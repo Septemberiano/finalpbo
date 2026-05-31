@@ -20,8 +20,8 @@ public class MainFrame extends JFrame {
     private final Color TEXT_WHITE = new Color(245, 245, 245);
     private final Color ACCENT_CYAN = new Color(0, 229, 255);
 
-    public MainFrame() {
-        setTitle("Sleman Eco-Weather & Agro-Alert System");
+    public MainFrame(String username) {
+     setTitle("Sleman Eco-Weather & Agro-Alert System [ MONITOR: " + username.toUpperCase() + " ]");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(BG_DARK);
         setLayout(new BorderLayout(15, 15));

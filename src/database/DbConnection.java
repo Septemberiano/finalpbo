@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 public class DbConnection {
     // Sesuaikan nama database MySQL di XAMPP Anda
-    private static final String URL = "jdbc:mysql://localhost:3306/db_cuaca_sleman";
+    private static final String URL = "jdbc:mysql://localhost:3306/db_sleman_weather";
     private static final String USER = "root";
     private static final String PASSWORD = "123";
 
