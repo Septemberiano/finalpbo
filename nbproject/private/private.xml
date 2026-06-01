@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/adityaseptemberiano/Documents/Prak%20Pbo/SlemanEcho/src/slemanecho/SlemanEcho.java</file>
+            <file>file:/home/adityaseptemberiano/Documents/Prak%20Pbo/SlemanEcho/src/model/Kecamatan.java</file>
+            <file>file:/home/adityaseptemberiano/Documents/Prak%20Pbo/SlemanEcho/src/model/WeatherRepository.java</file>
+            <file>file:/home/adityaseptemberiano/Documents/Prak%20Pbo/SlemanEcho/src/database/DbConnection.java</file>
+            <file>file:/home/adityaseptemberiano/Documents/Prak%20Pbo/SlemanEcho/src/view/MainFrame.java</file>
+            <file>file:/home/adityaseptemberiano/Documents/Prak%20Pbo/SlemanEcho/src/controller/WeatherController.java</file>
+            <file>file:/home/adityaseptemberiano/Documents/Prak%20Pbo/SlemanEcho/src/model/KondisiUdara.java</file>
+            <file>file:/home/adityaseptemberiano/Documents/Prak%20Pbo/SlemanEcho/src/model/CuacaNormal.java</file>
+            <file>file:/home/adityaseptemberiano/Documents/Prak%20Pbo/SlemanEcho/src/model/CuacaEkstrem.java</file>
+            <file>file:/home/adityaseptemberiano/Documents/Prak%20Pbo/SlemanEcho/src/view/LoginFrame.java</file>
+            <file>file:/home/adityaseptemberiano/Documents/Prak%20Pbo/SlemanEcho/src/view/AdminFrame.java</file>
+            <file>file:/home/adityaseptemberiano/Documents/Prak%20Pbo/SlemanEcho/src/controller/LoginController.java</file>
+            <file>file:/home/adityaseptemberiano/Documents/Prak%20Pbo/SlemanEcho/src/controller/AdminController.java</file>
+        </group>
+    </open-files>
+</project-private>

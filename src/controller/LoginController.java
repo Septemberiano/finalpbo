@@ -44,15 +44,11 @@ public class LoginController {
         } else if (username.equalsIgnoreCase("user") && password.equals("user123")) {
             JOptionPane.showMessageDialog(loginFrame, "Akses Publik Diizinkan! Membuka Dasbor Telemetri...");
             loginFrame.dispose();
+// 1. Buka View Layar Utama User Dashboard (Kosongkan parameter di dalam kurung)
+MainFrame userView = new MainFrame();
 
-            // 1. Buka View Layar Utama User Dashboard
-            MainFrame userView = new MainFrame(username);
-            
-            // 2. SUNTIKKAN WEATHER CONTROLLER DI SINI AGAR SENSOR BERFUNGSI AKTIF ⚡
-            new WeatherController(userView);
-
-            // 3. Tampilkan UI ke Monitor Layar Laptop
-            userView.setVisible(true);
+// 2. Tampilkan UI ke Monitor Layar Laptop
+userView.setVisible(true);
 
         } else {
             loginFrame.tampilkanPesanError("Akses Sistem Ditolak! Kredensial tidak valid.");
