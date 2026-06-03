@@ -9,12 +9,15 @@ package controller;
  * @author adityaseptemberiano
  */
 import view.LoginFrame;
-import view.AdminFrame;
 import view.MainFrame;
+import database.DbConnection; // Pastikan package database sudah sesuai
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 public class LoginController {
     private LoginFrame loginFrame;
 
@@ -33,25 +36,46 @@ public class LoginController {
         String username = loginFrame.getTxtUsername().getText();
         String password = new String(loginFrame.getTxtPassword().getPassword());
 
-        if (username.equalsIgnoreCase("admin") && password.equals("admin123")) {
-            JOptionPane.showMessageDialog(loginFrame, "Otorisasi Tingkat Tinggi Berhasil! Membuka Terminal Admin...");
-            loginFrame.dispose(); 
+        // 1. Validasi Input Dasar
+        if (username.trim().isEmpty() || password.trim().isEmpty()) {
+            loginFrame.tampilkanPesanError("Username dan Password tidak boleh kosong!");
+            return;
+        }
+
+        // 2. Query ke Database untuk Mencocokkan Kredensial & Mengambil Role
+        String query = "SELECT role FROM tb_user WHERE username = ? AND password = ?";
+
+        try (Connection conn = DbConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
             
-            AdminFrame adminView = new AdminFrame();
-            new AdminController(adminView);
-            adminView.setVisible(true);
-
-        } else if (username.equalsIgnoreCase("user") && password.equals("user123")) {
-            JOptionPane.showMessageDialog(loginFrame, "Akses Publik Diizinkan! Membuka Dasbor Telemetri...");
-            loginFrame.dispose();
-// 1. Buka View Layar Utama User Dashboard (Kosongkan parameter di dalam kurung)
-MainFrame userView = new MainFrame();
-
-// 2. Tampilkan UI ke Monitor Layar Laptop
-userView.setVisible(true);
-
-        } else {
-            loginFrame.tampilkanPesanError("Akses Sistem Ditolak! Kredensial tidak valid.");
+            ps.setString(1, username);
+            ps.setString(2, password);
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    // Ambil role yang terdaftar di database ('ADMIN', 'EO', atau 'AGRO')
+                    String roleUserTerdeteksi = rs.getString("role");
+                    
+                    JOptionPane.showMessageDialog(loginFrame, "Otorisasi Berhasil! Login sebagai: " + roleUserTerdeteksi);
+                    loginFrame.dispose(); 
+                    
+                    // 3. Alirkan ke MainFrame Dinamis Berbasis Role
+                    // Sesuai arsitektur baru, semua role (termasuk ADMIN) menggunakan MainFrame yang sama
+                    MainFrame dashboardUtama = new MainFrame(roleUserTerdeteksi);
+                    dashboardUtama.setVisible(true);
+                    
+                } else {
+                    // Jika username atau password tidak ditemukan di database
+                    loginFrame.tampilkanPesanError("Akses Sistem Ditolak! Kredensial tidak valid.");
+                }
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(loginFrame, 
+                "Gagal terhubung ke database lokasimu!\nError: " + ex.getMessage(), 
+                "Database Error", 
+                JOptionPane.ERROR_MESSAGE);
         }
     }
 }
